@@ -1,1 +1,1 @@
-# astrolabintelligence
+# astrolab
