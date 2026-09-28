@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrolab Intelligence</title>
+<meta name="description" content="Astrolab Intelligence builds autonomous research agents that map supply-chain gaps into concrete business opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E1A;
+    --bg-panel:#0D1424;
+    --rule: rgba(198,161,91,0.28);
+    --rule-soft: rgba(198,161,91,0.14);
+    --brass:#C6A15B;
+    --brass-bright:#E3C07E;
+    --text:#EDEAE1;
+    --text-muted:#8D93A6;
+    --serif:'Spectral', Georgia, 'Times New Roman', serif;
+    --sans:'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -5%, rgba(198,161,91,0.07), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  :focus-visible{
+    outline:2px solid var(--brass-bright);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 clamp(20px, 5vw, 56px);
+  }
+
+  /* Header */
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:28px 0;
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+  }
+  .wordmark{
+    font-family:var(--serif);
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+    color:var(--text);
+  }
+  .header-link{
+    font-size:0.92rem;
+    text-decoration:none;
+    color:var(--text-muted);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  .header-link:hover{
+    color:var(--brass-bright);
+    border-color:var(--brass);
+  }
+
+  /* Hero */
+  .hero{
+    padding:clamp(40px, 8vw, 96px) 0 clamp(48px, 8vw, 88px);
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:clamp(24px, 5vw, 48px);
+    align-items:center;
+  }
+  .hero-text h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height:1.14;
+    margin:0 0 22px;
+    max-width:14ch;
+  }
+  .hero-sub{
+    font-size:clamp(1.02rem, 1.6vw, 1.15rem);
+    color:var(--text-muted);
+    max-width:46ch;
+    margin:0;
+  }
+  .hero-diagram{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-diagram svg{
+    width:100%;
+    max-width:380px;
+    height:auto;
+  }
+  .rete{
+    transform-origin:200px 200px;
+    animation:slow-turn 140s linear infinite;
+  }
+  @keyframes slow-turn{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .rete{ animation:none; }
+  }
+
+  /* Sections */
+  .section{
+    padding:clamp(40px, 6vw, 64px) 0;
+    border-top:1px solid var(--rule-soft);
+  }
+  .section-grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:clamp(24px, 4vw, 48px);
+  }
+  .section-label{
+    font-family:var(--serif);
+    font-size:1.2rem;
+    color:var(--brass-bright);
+    padding-top:2px;
+  }
+  .section-body{
+    border-left:1px solid var(--rule);
+    padding-left:clamp(24px, 4vw, 48px);
+    max-width:640px;
+  }
+  .section-body p{
+    margin:0 0 16px;
+    color:var(--text);
+    font-size:1.02rem;
+  }
+  .section-body p:last-child{ margin-bottom:0; }
+
+  .capability-list{
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+  }
+  .capability{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  .capability dt{
+    font-family:var(--serif);
+    font-size:1.06rem;
+    font-weight:500;
+    color:var(--text);
+  }
+  .capability dd{
+    margin:0;
+    color:var(--text-muted);
+    max-width:56ch;
+    font-size:0.98rem;
+  }
+
+  .email-link{
+    display:inline-block;
+    font-family:var(--serif);
+    font-size:clamp(1.2rem, 2.4vw, 1.55rem);
+    color:var(--brass-bright);
+    text-decoration:none;
+    border-bottom:1px solid var(--brass);
+    padding-bottom:4px;
+    margin-top:6px;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  .email-link:hover{
+    color:#F2DCA8;
+    border-color:#F2DCA8;
+  }
+
+  footer{
+    border-top:1px solid var(--rule-soft);
+    padding:28px 0 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:0.85rem;
+    color:var(--text-muted);
+  }
+
+  @media (max-width:760px){
+    .hero{
+      grid-template-columns:1fr;
+    }
+    .hero-diagram{ order:-1; }
+    .hero-diagram svg{ max-width:260px; }
+    .section-grid{
+      grid-template-columns:1fr;
+    }
+    .section-label{
+      padding-top:0;
+    }
+    .section-body{
+      border-left:none;
+      border-top:1px solid var(--rule);
+      padding-left:0;
+      padding-top:20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="wordmark">Astrolab Intelligence</div>
+      <a class="header-link" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Mapping the market's blind spots.</h1>
+        <p class="hero-sub">Astrolab Intelligence runs autonomous research agents that turn scattered supply-chain and market data into a clear picture of where opportunity is going unclaimed.</p>
+      </div>
+      <div class="hero-diagram" aria-hidden="true">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="200" r="182" fill="none" stroke="var(--brass)" stroke-width="1.4" opacity="0.55"/>
+          <circle cx="200" cy="200" r="142" fill="none" stroke="var(--brass)" stroke-width="1" opacity="0.35"/>
+          <g id="ticks" stroke="var(--brass)" opacity="0.55"></g>
+          <g class="rete" id="rete" stroke="var(--brass-bright)" fill="none">
+            <line x1="60" y1="200" x2="340" y2="200" stroke-width="1" opacity="0.5"/>
+            <line x1="200" y1="60" x2="200" y2="340" stroke-width="1" opacity="0.25"/>
+            <g id="blades" stroke-width="1.1"></g>
+            <circle cx="200" cy="200" r="3.5" fill="var(--brass-bright)" stroke="none"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-grid">
+        <div class="section-label">What we do</div>
+        <div class="section-body">
+          <p>Every supply chain leaves a trail: customs filings, supplier directories, shipping manifests, trade reporting, industry data. Most of it is public, and almost none of it gets read together.</p>
+          <p>Our research agents work through it continuously, checking demand against capacity, to find where a market is under-served. What comes out the other end is not a pile of raw data, but a specific opportunity a business can act on, drawn from a knowledge base that keeps growing with every engagement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="capabilities">
+      <div class="section-grid">
+        <div class="section-label">Capabilities</div>
+        <div class="section-body">
+          <dl class="capability-list">
+            <div class="capability">
+              <dt>Autonomous research agents</dt>
+              <dd>Software agents continuously monitor public filings, trade data, supplier directories, and industry reporting, replacing weeks of manual desk research with an always-current view of a market.</dd>
+            </div>
+            <div class="capability">
+              <dt>Supply-chain gap detection</dt>
+              <dd>Demand signals are checked against supplier capacity and logistics data to surface where a supply chain is stretched thin, exposed, or missing a player entirely.</dd>
+            </div>
+            <div class="capability">
+              <dt>Opportunity mapping</dt>
+              <dd>Findings become a ranked, sized set of opportunities specific to a client's footprint and strategy, not a generic market report.</dd>
+            </div>
+            <div class="capability">
+              <dt>A compounding knowledge base</dt>
+              <dd>Every engagement adds structured findings to a shared knowledge base, so the next research effort starts from what is already known.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-grid">
+        <div class="section-label">Get in touch</div>
+        <div class="section-body">
+          <p>Astrolab Intelligence is working with early partners and welcomes inquiries from businesses navigating supply-chain or market uncertainty.</p>
+          <a class="email-link" href="mailto:zaidhabibi@astrolabintelligence.com">zaidhabibi@astrolabintelligence.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+      <span>Astrolab Intelligence</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+<script>
+  (function(){
+    var ticksGroup = document.getElementById('ticks');
+    var cx = 200, cy = 200, rOuter = 182, rInner = 170;
+    for (var i = 0; i < 72; i++){
+      var angle = (i * 5) * Math.PI / 180;
+      var isMajor = i % 6 === 0;
+      var rStart = isMajor ? 158 : rInner;
+      var x1 = cx + rStart * Math.cos(angle);
+      var y1 = cy + rStart * Math.sin(angle);
+      var x2 = cx + rOuter * Math.cos(angle);
+      var y2 = cy + rOuter * Math.sin(angle);
+      var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', x1.toFixed(2));
+      line.setAttribute('y1', y1.toFixed(2));
+      line.setAttribute('x2', x2.toFixed(2));
+      line.setAttribute('y2', y2.toFixed(2));
+      line.setAttribute('stroke-width', isMajor ? '1.4' : '0.7');
+      ticksGroup.appendChild(line);
+    }
+
+    var bladesGroup = document.getElementById('blades');
+    var bladeAngles = [20, 95, 160, 210, 265, 330];
+    var bladeRadii = [128, 110, 122, 100, 118, 108];
+    bladeAngles.forEach(function(deg, idx){
+      var rad = deg * Math.PI / 180;
+      var r = bladeRadii[idx];
+      var x = cx + r * Math.cos(rad);
+      var y = cy + r * Math.sin(rad);
+      var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x.toFixed(2)); line.setAttribute('y2', y.toFixed(2));
+      line.setAttribute('opacity', '0.65');
+      bladesGroup.appendChild(line);
+      var dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      dot.setAttribute('cx', x.toFixed(2)); dot.setAttribute('cy', y.toFixed(2));
+      dot.setAttribute('r', '2.6');
+      dot.setAttribute('fill', 'var(--brass-bright)');
+      bladesGroup.appendChild(dot);
+    });
+  })();
+</script>
+
+</body>
+</html>
